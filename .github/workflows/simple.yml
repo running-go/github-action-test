@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: echo a string
         run: echo "hello world"
-     # - name: multiline script
-     #	run: | 
-     #     node -v
-     #     npm -v
+      - name: multiline script
+        run: | 
+          echo "This is a multi-line script."
+          echo "It can have multiple commands."
+          echo "You can run any valid shell commands here."
