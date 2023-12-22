@@ -10,10 +10,9 @@ jobs:
       mongo:
         image: mongo:latest
         ports:
-          - 27017:27017  
+          - 27017:27017
       app:
-        image: alialaa17/node-api:latest
-        # image: akenisocean/node-js-mon-user:v0.0.1
+        image: akenisocean/node-js-mon-user:v0.0.2
         ports:
           - 3001:3000
     steps:
