@@ -16,12 +16,18 @@ jobs:
         ports:
           - 3001:3000
     steps:
-      - name: Wait for service to start
-        run: sleep 10
+      - name: Get app container IP address
+        id: get_app_ip
+        run: echo "::set-output name=app_ip::$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' app)"
+
       - name: Post a user
         run: |
-          curl -XPOST -H 'Content-Type:application/json' 'http://app:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
-          docker ps -a
+          app_ip=$(echo "${{ steps.get_app_ip.outputs.app_ip }}")
+          curl -XPOST -H 'Content-Type:application/json' "http://${app_ip}:3000/api/user" -d '{"username":"hello","address":"爷爷泡的茶"}'
+      # - name: Post a user
+      #   run: |
+      #     curl -XPOST -H 'Content-Type:application/json' 'http://localhost:3001/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
+      #     docker ps -a
       # - name: Get users
       #   run: |
       #     curl -s -XGET -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/users'
