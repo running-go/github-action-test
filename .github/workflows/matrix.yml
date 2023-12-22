@@ -6,11 +6,21 @@ jobs:
   node-version:
     runs-on: ubuntu-latest
     steps:
+      # 第一次打印默认的node的版本  
       - name: log node version
         run: node -v
+      # 设置置顶的node版本为12
       - uses: actions/setup-node@v4.0.1
         with:
           node-version: 12
+      # 再打印当前的版本，当前的node版本为12    
       - name: Log node version
         run: node -v
-
+  node-version14:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 14
+      - name: Log node version
+        run: node -v  
