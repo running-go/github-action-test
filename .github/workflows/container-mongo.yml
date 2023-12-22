@@ -19,9 +19,9 @@ jobs:
       - name: Post a user
         run: |
           ifconfig
-          curl -XPOST -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
+          curl -XPOST -H 'Content-Type:application/json' 'http://app:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
           docker ps -a
-      - name: Get users
-        run: |
-          curl -s -XGET -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/users'
+      # - name: Get users
+      #   run: |
+      #     curl -s -XGET -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/users'
   
