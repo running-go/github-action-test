@@ -18,9 +18,10 @@ jobs:
     steps:
       - name: Post a user
         run: |
-          curl -XPOST -H 'Content-Type:application/json' 'http://localhost:3001/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}'        
+          ifconfig
+          curl -XPOST -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
           docker ps -a
       - name: Get users
         run: |
-          curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3001/api/users'
+          curl -s -XGET -H 'Content-Type:application/json' 'http://127.0.0.1:3001/api/users'
   
