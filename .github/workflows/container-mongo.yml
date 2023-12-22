@@ -10,17 +10,19 @@ jobs:
       mongo:
         image: mongo:latest
         ports:
-          - 27017:27017
+          - 27017:27017  
       app:
         image: akenisocean/node-js-mon-user:v0.0.1
+        options: --name node-js-mon-user
         ports:
           - 3001:3000
     steps:
       - name: Post a user
         run: |
-          # curl -XPOST -H 'Content-Type:application/json' 'http://app:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}'        
+          # curl -XPOST -H 'Content-Type:application/json' 'http://localhost:3001/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}'        
           docker ps -a
+          docker logs -f node-js-mon-user
       - name: Get users
         run: |
-          curl -s -XGET -H 'Content-Type:application/json' 'http://app:3000/api/users'
+          curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3001/api/users'
   
