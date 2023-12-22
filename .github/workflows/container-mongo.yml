@@ -5,7 +5,7 @@ on: [push]
 jobs:
   container-test:
     name: app-mongo-user-test
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     services:
       mongo:
         image: mongo:latest
