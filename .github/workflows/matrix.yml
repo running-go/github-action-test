@@ -32,7 +32,7 @@ jobs:
       - name: Log node version
         run: |
           node -v
-          echo "is ubuntu 14: $IS_UBUNTU_14"
+          echo "is ubuntu 14: ${{env.IS_UBUNTU_14}}"
 #   node-version14:
 #     runs-on: ubuntu-latest
 #     steps:
