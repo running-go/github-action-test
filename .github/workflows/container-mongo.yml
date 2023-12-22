@@ -13,7 +13,7 @@ jobs:
           - 27017:27017  
       app:
         # image: akenisocean/node-js-mon-user:v0.0.1
-        image: alialaa17/node-api
+        image: alialaa17/node-api:latest
         ports:
           - 3001:3000
     steps:
