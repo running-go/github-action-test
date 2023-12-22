@@ -1,0 +1,1 @@
+docker build --tag akenisocean/node-js-mon-user:v0.0.1 .
