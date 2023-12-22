@@ -2,10 +2,16 @@ name: Actions workflow
 
 on: [push,pull_request]
 
+env:
+  JK_ENV: avariable ddd
+
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: Print JK_ENV
+        run: |
+          echo "JK_ENV IS:${JK_ENV}"
       - name: List files
         run: |
           pwd
