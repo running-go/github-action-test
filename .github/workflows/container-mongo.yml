@@ -25,8 +25,9 @@ jobs:
       - name: Post a user
         run: |
           docker ps -a
+          docker logs -f app
           sleep 2
-          curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
+          # curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
       - name: Get users
         run: |
           curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3000/api/users'
