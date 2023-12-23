@@ -6,13 +6,16 @@ jobs:
   container-test:
     name: app-mongo-user-test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [arm64]
     services:
       mongo:
         image: mongo:latest
         ports:
           - 27017:27017
       app:
-        image: akenisocean/node-js-mon-user:v0.0.2
+        image: akenisocean/node-js-mon-user:v0.0.1
         ports:
           - 3000:3000
         options: >-
