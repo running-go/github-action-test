@@ -14,6 +14,8 @@ jobs:
         image: mongo:latest
         ports:
           - 27017:27017
+        options: >-
+          --name mongo
       app:
         image: akenisocean/node-js-mon-user:v0.0.1
         ports:
