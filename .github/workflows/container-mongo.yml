@@ -24,6 +24,8 @@ jobs:
           --name app
 
     steps:
+      - name: Check Architecture
+        run: cat /etc/os-release
       - name: Post a user
         run: |
           docker ps -a
