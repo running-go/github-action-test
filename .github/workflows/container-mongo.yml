@@ -6,9 +6,6 @@ jobs:
   container-test:
     name: app-mongo-user-test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        arch: [arm64]
     services:
       mongo:
         image: mongo:latest
@@ -31,7 +28,7 @@ jobs:
           docker info
           docker ps -a
           sleep 2
-          docker logs -f app
+          # docker logs -f app
           curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
       - name: View container logs
         run: docker logs app
