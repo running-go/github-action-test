@@ -17,7 +17,7 @@ jobs:
         options: >-
           --name mongo
       app:
-        image: akenisocean/node-js-mon-user:v0.0.1
+        image: akenisocean/node-js-mon-user:0.0.1
         ports:
           - 3000:3000
         options: >-
@@ -31,10 +31,11 @@ jobs:
           docker info
           docker ps -a
           sleep 2
-          # curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
+          docker logs -f app
+          curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
       - name: View container logs
         run: docker logs app
-      # - name: Get users
-      #   run: |
-      #     curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3000/api/users'
+      - name: Get users
+        run: |
+          curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3000/api/users'
   
