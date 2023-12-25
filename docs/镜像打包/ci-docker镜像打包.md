@@ -1,3 +1,20 @@
+# Github Actions实现打包镜像并推送到docker hub仓库中
+
+## 步骤
+1. 登录docker hub并创建token。
+2. 创建好的token放入Github Actions中的Secrets里面并设置变量.
+3. 在当前项目的**.github/workflows**目录下创建yaml文件并编写文件。
+
+### 1. 登录docker hub并创建token。
+![创建docker_hub中的token](./images/创建docker_hub中的token.png)
+
+![docker_hub创建access_token](./images/docker_hub创建access_token.png)
+
+### 2. 创建好的token放入Github Actions中的Secrets里面并设置变量.
+![github_actions创建secrets](./images/github_actions创建secrets.png)
+
+### 3. 在当前项目的**.github/workflows**目录下创建yaml文件并编写文件。
+```yml
 #workflow名称
 name: ci
 # 触发条件
@@ -63,3 +80,4 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.output-id.outputs.v }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+```
