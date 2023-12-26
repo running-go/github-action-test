@@ -1,0 +1,38 @@
+name: app run 
+
+on: [push]
+
+jobs:
+  container-test:
+    name: app-mongo-user-test
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --name mongo
+      app:
+        image: akenisocean/node-js-mon-user:0.0.1
+        ports:
+          - 3000:3000
+        options: >-
+          --name app
+
+    steps:
+      - name: Check Architecture
+        run: cat /etc/os-release
+      - name: Post a user
+        run: |
+          docker info
+          docker ps -a
+          sleep 2
+          # docker logs -f app
+          curl -m 10 --retry 5 -XPOST -H 'Content-Type:application/json' 'http://localhost:3000/api/user' -d '{"username":"hello","address":"爷爷泡的茶"}' 
+      - name: View container logs
+        run: docker logs app
+      - name: Get users
+        run: |
+          curl -s -XGET -H 'Content-Type:application/json' 'http://localhost:3000/api/users'
+  

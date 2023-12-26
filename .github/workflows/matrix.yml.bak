@@ -1,0 +1,43 @@
+name: Matrix test
+
+on: [pull_request]
+
+jobs: 
+  node-version:
+    strategy:
+      matrix:
+        # 设置每个系统都执行一个node的12、14、16三个版本,一共9次
+        os: [macos-latest,ubuntu-latest,windows-latest]
+        node_version: [12,14,16]
+        include:
+          - os: ubuntu-latest
+            node_version: 14
+            is_ubuntu_14: "true"
+        # 指定排除哪种方式不执行
+        exclude:
+          - os: ubuntu-latest
+            node_version: 14
+    runs-on: ${{matrix.os}}
+    env: 
+      IS_UBUNTU_14: ${{matrix.is_ubuntu_14}}
+    steps:
+      # 第一次打印默认的node的版本  ≈≈
+      - name: log node version
+        run: node -v
+      # 设置置顶的node版本为12
+      - uses: actions/setup-node@v4.0.1
+        with:
+          node-version: ${{matrix.node_version}}
+      # 再打印当前的版本，当前的node版本为12    
+      - name: Log node version
+        run: |
+          node -v
+          echo 'is ubuntu 14: ${{env.IS_UBUNTU_14}}'
+#   node-version14:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/setup-node@v4.0.1
+#         with:
+#           node-version: 14
+#       - name: Log node version
+#         run: node -v  

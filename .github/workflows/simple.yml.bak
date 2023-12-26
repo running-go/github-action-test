@@ -1,0 +1,17 @@
+name: Shell Commands
+
+on: [pull_request]
+
+jobs: 
+  run-shell-command: 
+    # 设置后续action运行的环境
+    runs-on: ubuntu-latest
+    # 设置在容器中运行的动作
+    steps:
+      - name: echo a string
+        run: echo "hello world"
+      - name: multiline script
+        run: | 
+          echo "This is a multi-line script."
+          echo "It can have multiple commands."
+          echo "You can run any valid shell commands here."
